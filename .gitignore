@@ -1,5 +1,6 @@
 venv
 *.DS_Store
+*.ipynb_checkpoints
 
 # Ignore all images
 *.png
