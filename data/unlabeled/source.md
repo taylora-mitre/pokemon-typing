@@ -1,0 +1,1 @@
+# https://www.kaggle.com/datasets/djilax/pkmn-image-dataset/data
