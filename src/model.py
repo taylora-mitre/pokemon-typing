@@ -2,26 +2,6 @@ import tensorflow as tf
 from keras import layers
 import os
 
-
-def consolidate_outputs(inputs, outputs, loss, learning_rate):
-
-    # Optmizer & Learning Rate
-    opt = tf.keras.optimizers.Adam(learning_rate)
-    
-    # Save the model 
-    keras_log_path = os.path.join('models/KERAS_LOGS')
-    if not os.path.exists(keras_log_path): os.mkdir(keras_log_path)
-    
-    # Create and compile the model
-    model = tf.keras.Model(inputs=inputs, outputs=outputs)
-    model.compile(optimizer=opt, loss=loss)
-
-    # Write out model specs to help load in saved model
-    #self.export(self.json_file)
-    
-    return model
-
-
 F_arr = [64,128,256,512]
 N_arr = [2,2,2,2]
 def build(
@@ -53,6 +33,26 @@ def build(
     loss_fn = tf.keras.losses.SparseCategoricalCrossentropy
     model = consolidate_outputs(inputs, outputs, loss_fn, learning_rate)
     return model
+
+
+def consolidate_outputs(inputs, outputs, loss, learning_rate):
+
+    # Optmizer & Learning Rate
+    opt = tf.keras.optimizers.Adam(learning_rate)
+    
+    # Save the model 
+    keras_log_path = os.path.join('models/KERAS_LOGS')
+    if not os.path.exists(keras_log_path): os.mkdir(keras_log_path)
+    
+    # Create and compile the model
+    model = tf.keras.Model(inputs=inputs, outputs=outputs)
+    model.compile(optimizer=opt, loss=loss)
+
+    # Write out model specs to help load in saved model
+    #self.export(self.json_file)
+    
+    return model
+
 
 # region layers and blocks
 def first_layer(inputs):
